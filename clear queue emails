@@ -1,0 +1,13 @@
+list<Group>lstgrp=[Select Id ,DoesSendEmailToMembers,email from Group where type='Queue'];
+list<Group>newUpdatelst=new List<Group>();
+
+for(Group gp:lstgrp)
+{
+if(gp.Email!=null || gp.Email!='')
+{
+gp.Email=null;
+gp.DoesSendEmailToMembers=false;
+newUpdatelst.add(gp);
+}
+}
+update newUpdatelst;
