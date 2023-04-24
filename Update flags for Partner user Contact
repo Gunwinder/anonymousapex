@@ -14,10 +14,10 @@ for( User usr:lstquery)
     }
 }
  
-for(contact con:[select id,Licensed__c from contact where id in:lstcontactId])
+for(contact con:[select id,Licensed__c,Partner_Lic_assigned__c from contact where id in:lstcontactId])
 {
    con.Licensed__c=true; 
-   Partner_Lic_assigned__c=true;	
+   con.Partner_Lic_assigned__c=true;	
    updateContact.add(con);
 }
     
