@@ -1,0 +1,7 @@
+List<Contact> ConUpdateList = new List<Contact>();
+List<Contact> lstContact=[select id,name,Total_Tickets__c,(select id from cases) from Contact];
+For(Contact Con :lstContact){
+   con.Total_Tickets__c=Con.cases.size();
+   system.debug('Total_Tickets__c = ' +Con.cases.size());
+   ConUpdateList.add(con);
+}
