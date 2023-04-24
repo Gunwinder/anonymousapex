@@ -1,0 +1,3 @@
+Select Id FROM Attachment WHERE 
+Parent.Type = 'Case' AND 
+CreatedDate <= 2020-12-31T00:00:00Z 
