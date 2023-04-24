@@ -1,0 +1,24 @@
+Checkbox to track user is assigned with a Partner license on contact object:
+---------------------------------------------------------------------------------
+
+List<user>lstquery =[select contactid from user where usertype='PowerPartner' and isActive=true and accountid!='001d000000KDJB8'];
+ 
+List<contact> updateContact=new List<contact>();
+List<String> lstcontactId =new List<String>();
+ 
+for( User usr:lstquery)
+{
+    if(lstquery.size()>0)
+    {
+        lstcontactId.add(usr.contactid);
+    }
+}
+ 
+for(contact con:[select id,Licensed__c from contact where id in:lstcontactId])
+{
+   con.Licensed__c=true; 
+   Partner_Lic_assigned__c=true;	
+   updateContact.add(con);
+}
+    
+update updateContact;
