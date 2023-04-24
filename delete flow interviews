@@ -1,0 +1,9 @@
+Delete failed flow interviews 
+-------------------------------
+
+list<FlowInterview> interviewLst = [SELECT id,InterviewStatus FROM FlowInterview WHERE InterviewStatus = 'Error'];
+system.debug('Interviews list : '+interviewLst);
+delete interviewLst;
+
+SELECT id,InterviewLabel,InterviewStatus  FROM FlowInterview WHERE InterviewStatus = 'Error' AND InterviewLabel Like '%Case_CO_Temp E2CP Custom Settings%'
+
