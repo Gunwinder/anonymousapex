@@ -1,0 +1,27 @@
+Make sure to enable locking and unlocking of records using APEX from : Setup | Process Automations Settings. 
+
+Execute the following snippet from Anonymous Window. 
+
+// Collect a list of Timesheet records with Krow__Approval_Status__c = 'Submitted'
+List<Krow__Timesheet__c> timesheets = [SELECT Id,
+Krow__Approval_Status__c,
+Krow__Project_Resource__c,
+Krow__Week_Start_Date__c,
+Krow__Week_End_Date__c,
+EVC_Employee_Id__c 
+
+FROM Krow__Timesheet__c 
+WHERE Krow__Approval_Status__c = 'Approved'AND 
+Timesheet_approver__c='DeepeshKhatri (BlackBeltHelp)' AND 
+EVC_Employee_Id__c = '1540' AND 
+Krow__Week_Start_Date__c >= 2022-01-01 AND 
+Krow__Week_Start_Date__c <= 2023-01-01];
+
+// Unlock each record in the list
+system.debug('TimesheetId :' +timesheets);
+for (Krow__Timesheet__c timesheet : timesheets) {
+    Approval.UnlockResult result = Approval.unlock(timesheet.Id);
+    if (!result.isSuccess()) {
+        // Handle error if the unlock operation was not successful
+    }
+}
