@@ -1,0 +1,9 @@
+list<user> usertoUpdate = new list<user>();
+for (user u: [SELECT ID from user WHERE email like '%bridgeport.edu' and isportalenabled = true limit 5])
+{
+    u.isportalenabled=false;
+    u.iscustomerenabled=false;
+    system.debug('User Id :'+ u.id);
+    usertoUpdate.add(u);
+}
+update usertoUpdate;
