@@ -1,4 +1,4 @@
-SELECT Id, CreatedDate, ParentId
-FROM EmailMessage
-WHERE ParentId LIKE '500%'
-LIMIT 10
+SELECT Id, CreatedDate, ParentId 
+FROM EmailMessage 
+WHERE createddate >=2022-01-01T00:00:00Z limit 50   // YYYY-MM-DD + 00:00:00Z which is in UTC
+
