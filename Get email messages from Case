@@ -1,0 +1,4 @@
+SELECT Id, CreatedDate, ParentId
+FROM EmailMessage
+WHERE ParentId LIKE '500%'
+LIMIT 10
