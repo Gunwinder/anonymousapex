@@ -1,0 +1,13 @@
+Schema.DescribeSObjectResult objectDescribe = Krow__Timesheet_Detail__c.sObjectType.getDescribe();  // replace Krow__Timesheet_Detail__c with your sObject.
+Map<String, Schema.SObjectField> fieldMap = objectDescribe.fields.getMap();
+
+List<String> requiredFields = new List<String>();
+
+for (String fieldName : fieldMap.keySet()) {
+    Schema.SObjectField field = fieldMap.get(fieldName);
+    Schema.DescribeFieldResult fieldDescribe = field.getDescribe();
+
+    if (!fieldDescribe.isNillable()) {
+        requiredFields.add(fieldName);
+    }
+}
