@@ -1,0 +1,13 @@
+list<user> ulist =[select id from user where profileid='00ed0000000HMP7' limit 100];
+list<user> updateUser = new list<user>();
+if(ulist.size()>0){
+    for(user u:ulist){
+         u.IsPortalEnabled = false;
+        updateUser.add(u);
+    }
+}
+
+if(updateUser.size()>0){
+    
+   update updateUser;
+}
